@@ -1,0 +1,58 @@
+<script>
+
+    var reponseA = document.getElementById('reponseA');
+    var reponseB = document.getElementById('reponseB');
+    var reponseC = document.getElementById('reponseC');
+
+    var boutonA = document.getElementById('boutonA');
+    var boutonB = document.getElementById('boutonB');
+    var boutonC = document.getElementById('boutonC');
+
+    addListeners();
+
+    function addListeners(){
+        reponseA.addEventListener("click", repondre);
+        reponseA.valeur = "A";
+        reponseB.addEventListener("click", repondre);
+        reponseB.valeur = "B";
+        reponseC.addEventListener("click", repondre);
+        reponseC.valeur = "C";
+    };
+
+    function removeListeners(){
+        reponseA.removeEventListener("click", repondre);
+        reponseB.removeEventListener("click", repondre);
+        reponseC.removeEventListener("click", repondre);
+    };
+
+    function feedback(){
+        if(reponseA.classList.contains("true")) {
+            boutonA.style.backgroundColor = "green";
+        } else {
+            boutonA.style.backgroundColor = "red";
+        }
+
+        if(reponseB.classList.contains("true")) {
+            boutonB.style.backgroundColor = "green";
+        } else {
+            boutonB.style.backgroundColor = "red";
+        }
+
+        if(reponseC.classList.contains("true")) {
+            boutonC.style.backgroundColor = "green";
+        } else {
+            boutonC.style.backgroundColor = "red";
+        }
+    };
+
+    function repondre(event)
+    {
+        var reponse = event.currentTarget.valeur;
+        
+        feedback();
+
+        removeListeners();
+    };
+
+
+</script>

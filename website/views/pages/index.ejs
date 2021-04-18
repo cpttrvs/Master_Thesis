@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <%- include('../partials/head'); %>
+    </head>
+    <body>
+        <h1>test</h1>
+        <%= id %>
+        <categorie>
+            <%= categorie %>
+        </categorie></br>
+
+        <question>
+            <%= question %>
+        </question></br>
+        
+        <explication>
+            <%= explication %>
+        </explication></br>
+
+        <img src="<%= cheminImage %>" id='image' style="max-width: 600px; width:100%"/> </br>
+
+        <reponse id='reponseA' class="<%= reponses[0].value %>">
+            <button id='boutonA'>
+                <%= reponses[0].name %>
+            </button>
+        </reponse>
+
+        <reponse id='reponseB' class="<%= reponses[1].value %>">
+            <button id='boutonB'>
+                <%= reponses[1].name %>
+            </button>
+        </reponse>
+
+        <reponse id='reponseC' class="<%= reponses[2].value %>">         
+            <button id='boutonC'>
+                <%= reponses[2].value %>
+            </button>
+        </reponse></br>
+
+
+        <div></div>
+
+        <footer>
+            <%- include('../partials/footer'); %>
+        </footer>
+        
+        <%- include('../partials/client'); %>
+    </body>
+
+</html>
+

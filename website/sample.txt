@@ -1,0 +1,21 @@
+{
+    "categorie": "Militaire",
+    "question": "Est-ce une arme ?",
+    "reponseA": "oui",
+    "reponseB": "non",
+    "reponseC": "peut-être",
+    "correcte": "A",
+    "explication": "alors en fait il s'agit bien d'une arme"
+}
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+  <categorie>Militaire</categorie>
+  <question>Est-ce une arme ?</question>
+  <reponseA>oui</reponseA>
+  <reponseB>non</reponseB>
+  <reponseC>peut-être</reponseC>
+  <correcte>A</correcte>
+  <explication>alors en fait il s'agit bien d'une arme</explication>
+</root>
+
