@@ -1,5 +1,14 @@
 <script>
 
+    var tempsAttente = 1000;
+
+    //vues
+    var idEnigme = document.getElementById('idEnigme');
+    var categorie = document.getElementById('categorie');
+    var question = document.getElementById('question');
+    var explication = document.getElementById('explication');
+    var image = document.getElementById('image');
+
     var reponseA = document.getElementById('reponseA');
     var reponseB = document.getElementById('reponseB');
     var reponseC = document.getElementById('reponseC');
@@ -8,8 +17,10 @@
     var boutonB = document.getElementById('boutonB');
     var boutonC = document.getElementById('boutonC');
 
+    //initialisation
     addListeners();
 
+    //fonctions
     function addListeners(){
         reponseA.addEventListener("click", repondre);
         reponseA.valeur = "A";
@@ -23,6 +34,24 @@
         reponseA.removeEventListener("click", repondre);
         reponseB.removeEventListener("click", repondre);
         reponseC.removeEventListener("click", repondre);
+    };
+
+    function rafraichirVue(json)
+    {
+        console.log(json);
+
+        idEnigme.innerHTML = json.id;
+        categorie.innerHTML = json.categorie;
+        question.innerHTML = json.question;
+        explication.innerHTML = json.explication;
+        boutonA.innerHTML = json.reponses[0].name;
+        boutonB.innerHTML = json.reponses[1].name;
+        boutonC.innerHTML = json.reponses[2].name;
+        image.setAttribute("src", json.cheminImage);
+
+        addListeners();
+
+        rafraichirFeedback();
     };
 
     function feedback(){
@@ -45,23 +74,21 @@
         }
     };
 
+    function rafraichirFeedback()
+    {
+        boutonA.style.backgroundColor = "white";
+        boutonB.style.backgroundColor = "white";
+        boutonC.style.backgroundColor = "white";
+    }
+
     function prochaineEnigme()
     {
-        var requete = new XMLHttpRequest();
-        requete.open('POST', "/suivant", true);
-        requete.send();
-
-        requete.onreadystatechange = processRequete;
-        
-        function processRequete(e)
-        {
-            if(requete.readyState == XMLHttpRequest.DONE)
-            {
-                console.log("REQUETE RECUE");
-                console.log(requete.responseText);
-                window.location.href = requete.responseText;
-            }
-        };
+        fetch('/suivant', {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+        })
+        .then(res => res.json())
+        .then(json => rafraichirVue(json))
     };
 
 
@@ -74,7 +101,9 @@
 
         removeListeners();
 
-        prochaineEnigme();
+        setTimeout(() => {
+            prochaineEnigme();
+        }, tempsAttente);
     };
 
 

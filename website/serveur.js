@@ -4,7 +4,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const app = express();
 const module_enigmes = require('./module_enigmes');
-const { stringify } = require('qs');
+const node_fetch = require('node-fetch');
 //constantes
 const port = 3000;
 const dossierEnigmes = 'enigmes';
@@ -70,7 +70,14 @@ app.post('/suivant', (req, res) => {
         res.status(404).send('L\'enigme ' + req.params.id + ' n\'existe pas');
     }
 
-    res.send(enigme.id.toString());
+    res.send({
+        id: enigme.id,
+        categorie: enigme.categorie,
+        question: enigme.question,
+        explication: enigme.explication,
+        reponses: enigme.reponses,
+        cheminImage: enigme.cheminImage
+    });
 });
 
 //main

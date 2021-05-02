@@ -4,19 +4,21 @@
         <%- include('../partials/head'); %>
     </head>
     <body>
-        <h1>test</h1>
-        <%= id %>
-        <categorie>
-            <%= categorie %>
-        </categorie></br>
-
-        <question>
+        <h1 id='question'>
             <%= question %>
-        </question></br>
-        
-        <explication>
+        </h1>
+
+        <h2 id='categorie'>
+            <%= categorie %>
+        </h2>
+
+        <p id='idEnigme'>
+            <%= id %>
+        </p>
+
+        <p id='explication'>
             <%= explication %>
-        </explication></br>
+        </p></br>
 
         <img src="<%= cheminImage %>" id='image' style="max-width: 600px; width:100%"/> </br>
 
