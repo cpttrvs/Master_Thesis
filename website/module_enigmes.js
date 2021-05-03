@@ -35,7 +35,7 @@ var ajouterEnigme = function(categorie, question, reponses, indexCorrecte, expli
 {
     let nouvelleEnigme = new Enigme(enigmes.length+1, categorie, question, reponses, indexCorrecte, explication, cheminImage);
     enigmes.push(nouvelleEnigme);
-    console.log("--ajout: " + JSON.stringify(nouvelleEnigme));
+    console.log("module_enigmes: ajouterEnigme " + nouvelleEnigme.id); //JSON.stringify(nouvelleEnigme));
 };
 
 exports.recevoirPremiereEnigme = function()
@@ -129,7 +129,9 @@ exports.initialiserDossier = function(dossier)
             }
         })
 
+        console.log("module_enigme: initialiserDossier, fichiersEnigme");
         console.log(fichiersEnigme);
+        console.log("module_enigme: initialiserDossier, fichiersImage");
         console.log(fichiersImage);
 
         fichiersEnigme.forEach(function(fichier) 

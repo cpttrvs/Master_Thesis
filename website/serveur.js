@@ -4,7 +4,6 @@ const path = require('path');
 const app = express();
 
 const bodyParser = require('body-parser');
-const node_fetch = require('node-fetch');
 
 const module_enigmes = require('./module_enigmes');
 
@@ -45,6 +44,10 @@ app.get('/', (req, res) => {
 });
 
 app.get('/:id', (req, res) => {
+    //prevent favicon as id
+    if(req.params.id === "favicon.ico") { return res.sendStatus(204); }
+
+
     console.log("----ROUTING: id:" + req.params.id +"----");
 
     let enigme = module_enigmes.recevoirEnigme(parseInt(req.params.id));
@@ -82,14 +85,6 @@ app.post('/suivant', (req, res) => {
         reponses: enigme.reponses,
         cheminImage: enigme.cheminImage
     });
-});
-
-//prevenir favicon
-app.use(function(req, res, next) {
-    if (req.originalUrl && req.originalUrl.split("/").pop() === 'favicon.ico') {
-      return res.sendStatus(204);
-    }
-    return next();
 });
 
 //main

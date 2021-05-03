@@ -1,0 +1,24 @@
+{
+  "name": "aenigma",
+  "version": "1.0.0",
+  "description": "projet interactif du musée gallo-romain de biesheim, dans le cadre du mémoire de recherche en game design, par Joseph Stich et l'équipe",
+  "main": "serveur.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "museum",
+    "interactivity",
+    "quiz",
+    "raspberry"
+  ],
+  "author": "joseph stich",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.1",
+    "recursive-readdir": "^2.2.2",
+    "yaml": "^1.10.2"
+  }
+}
