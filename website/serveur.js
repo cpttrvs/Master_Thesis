@@ -1,10 +1,13 @@
 //modules
 const express = require('express');
 const path = require('path');
-const bodyParser = require('body-parser');
 const app = express();
-const module_enigmes = require('./module_enigmes');
+
+const bodyParser = require('body-parser');
 const node_fetch = require('node-fetch');
+
+const module_enigmes = require('./module_enigmes');
+
 //constantes
 const port = 3000;
 const dossierEnigmes = 'enigmes';
@@ -14,8 +17,9 @@ app.use(bodyParser.urlencoded({ extended: false}));
 app.use(express.static(path.join(__dirname, dossierEnigmes)));
 
 //module questions
-module_enigmes.ajouterEnigme("militaire", "Est-ce une arme ?", ["oui", "non", "je sais pas"], 2, "ceci est l'explication", "cat1/qu1/image.jpg");
-module_enigmes.ajouterEnigme("religion", "Est-ce une religion ?", ["oui", "non", "je sais pas"], 1, "ceci est l'explication", "cat1/qu2/image.jpg");
+module_enigmes.initialiserDossier(dossierEnigmes);
+//module_enigmes.ajouterEnigme("militaire", "Est-ce une arme ?", ["oui", "non", "je sais pas"], 2, "ceci est l'explication", "cat1/qu1/image.jpg");
+//module_enigmes.ajouterEnigme("religion", "Est-ce une religion ?", ["oui", "non", "je sais pas"], 1, "ceci est l'explication", "cat1/qu2/image.jpg");
 
 
 //get
@@ -78,6 +82,14 @@ app.post('/suivant', (req, res) => {
         reponses: enigme.reponses,
         cheminImage: enigme.cheminImage
     });
+});
+
+//prevenir favicon
+app.use(function(req, res, next) {
+    if (req.originalUrl && req.originalUrl.split("/").pop() === 'favicon.ico') {
+      return res.sendStatus(204);
+    }
+    return next();
 });
 
 //main

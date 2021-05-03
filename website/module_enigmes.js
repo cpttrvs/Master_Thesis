@@ -1,3 +1,10 @@
+// modules
+const path = require('path');
+const yaml = require('yaml');
+const fs = require('fs');
+const recursive = require('recursive-readdir');
+
+// definitions
 class Enigme
 {
     constructor(id, categorie, question, reponses, indexCorrecte, explication, cheminImage) 
@@ -7,9 +14,9 @@ class Enigme
         this.question = question;
 
         this.reponses = [
-            {name: reponses[0], value: indexCorrecte==1},
-            {name: reponses[1], value: indexCorrecte==2},
-            {name: reponses[2], value: indexCorrecte==3},
+            {name: reponses[0], value: indexCorrecte=="A"},
+            {name: reponses[1], value: indexCorrecte=="B"},
+            {name: reponses[2], value: indexCorrecte=="C"},
         ]
 
         this.explication = explication;
@@ -23,11 +30,13 @@ var indexCourant = 0;
 var enigmes = [];
 exports.enigmes = enigmes;
 
-exports.ajouterEnigme = function(categorie, question, reponses, indexCorrecte, explication, cheminImage)
+// fonctions
+var ajouterEnigme = function(categorie, question, reponses, indexCorrecte, explication, cheminImage)
 {
     let nouvelleEnigme = new Enigme(enigmes.length+1, categorie, question, reponses, indexCorrecte, explication, cheminImage);
     enigmes.push(nouvelleEnigme);
-}
+    console.log("--ajout: " + JSON.stringify(nouvelleEnigme));
+};
 
 exports.recevoirPremiereEnigme = function()
 {
@@ -65,7 +74,7 @@ exports.recevoirEnigme = function(index)
 
         return enigme;
     }
-}
+};
 
 exports.recevoirProchaineEnigme = function(index = indexCourant)
 {
@@ -83,8 +92,74 @@ exports.recevoirProchaineEnigme = function(index = indexCourant)
     }
 
     return enigme;
-}
+};
 
 exports.recevoirIndexCourant = function() {
     return indexCourant;
-}
+};
+
+//gestion de fichier
+var initialisation = false;
+var extensionFichierEnigme = [".txt"];
+var extensionFichierImage = [".jpg", ".png", ".jpeg", ".gif"];
+
+exports.initialiserDossier = function(dossier)
+{
+    if(initialisation) return;
+    initialisation = true;
+
+    var fichiersEnigme = [];
+    var fichiersImage = [];
+    
+    recursive(dossier, function(err, fichiers) 
+    {
+        //console.log(fichiers);
+        fichiers.forEach(function(fichier) 
+        {
+            if(extensionFichierEnigme.includes(path.extname(fichier).toLowerCase()))
+            {
+                //console.log("\t" + fichier + " path: " + cheminFichier + " " + path.extname(fichier));
+
+                fichiersEnigme.push(fichier);           
+            }
+
+            if(extensionFichierImage.includes(path.extname(fichier).toLowerCase()))
+            {
+                fichiersImage.push(fichier);    
+            }
+        })
+
+        console.log(fichiersEnigme);
+        console.log(fichiersImage);
+
+        fichiersEnigme.forEach(function(fichier) 
+        {
+            let existe = false;
+            let pathFichier = path.dirname(fichier);
+            fichiersImage.forEach(function(image)
+            {
+                if(pathFichier == path.dirname(image))
+                {                
+                    if(!existe)
+                    {
+                        //yaml
+                        let contenu = yaml.parse(fs.readFileSync(fichier, 'utf8'));
+        
+                        ajouterEnigme(
+                            contenu.categorie, 
+                            contenu.question, 
+                            [contenu.A, contenu.B, contenu.C], 
+                            contenu.juste, 
+                            contenu.explication, 
+                            image.replace(dossier, ''));
+                        
+                        existe = true;
+                    } else {
+                        console.log("module_enigme: initialiserDossier, plusieurs images trouvées pour une énigme: " + fichier);
+                    }
+                } 
+            });
+        });
+
+    });
+};
