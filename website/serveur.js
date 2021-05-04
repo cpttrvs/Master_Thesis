@@ -2,26 +2,30 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-
 const bodyParser = require('body-parser');
 
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
+
 const module_enigmes = require('./module_enigmes');
+const module_raspberry = require('./module_raspberry');
 
 //constantes
 const port = 3000;
 const dossierEnigmes = 'enigmes';
 
+//initialisation
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(express.static(path.join(__dirname, dossierEnigmes)));
 
-//module questions
 module_enigmes.initialiserDossier(dossierEnigmes);
+module_raspberry.initialisationGPIO();
 //module_enigmes.ajouterEnigme("militaire", "Est-ce une arme ?", ["oui", "non", "je sais pas"], 2, "ceci est l'explication", "cat1/qu1/image.jpg");
 //module_enigmes.ajouterEnigme("religion", "Est-ce une religion ?", ["oui", "non", "je sais pas"], 1, "ceci est l'explication", "cat1/qu2/image.jpg");
 
 
-//get
+//routes
 app.get('/', (req, res) => {
     console.log("----ROUTING: home----");
 
@@ -87,5 +91,43 @@ app.post('/suivant', (req, res) => {
     });
 });
 
-//main
-app.listen(port, () => console.log(`Listening on port ${port}...`));
+//events module_raspberry
+module_raspberry.eventManager.on(module_raspberry.eventCapteurA, function(valeur) {
+    console.log("[EVENT] " + module_raspberry.eventCapteurA + " = " + valeur);
+
+    if(valeur)
+    {
+        io.emit('capteur', 'A');
+    }
+});
+module_raspberry.eventManager.on(module_raspberry.eventCapteurB, function(valeur) {
+    console.log("[EVENT] " + module_raspberry.eventCapteurB + " = " + valeur);
+
+    if(valeur)
+    {
+        io.emit('capteur', 'B');
+    }
+});
+module_raspberry.eventManager.on(module_raspberry.eventCapteurC, function(valeur) {
+    console.log("[EVENT] " + module_raspberry.eventCapteurC + " = " + valeur);
+
+    if(valeur)
+    {
+        io.emit('capteur', 'C');
+    }
+});
+
+//events socket.io
+io.on('connection', (socket) => {
+    console.log("----Connexion client: " + socket.id + "----");
+});
+
+//-----------------------
+server.listen(port, () => console.log(`Listening on port ${port}...`));
+
+process.on('SIGINT', _ => {
+    module_raspberry.unexportGPIO();   
+    
+    console.log("----ARRET----");
+    process.exit(0); 
+});

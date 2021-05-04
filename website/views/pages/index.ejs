@@ -12,15 +12,16 @@
             <%= categorie %>
         </h2>
 
-        <p id='idEnigme'>
-            <%= id %>
+        <p>
+            ID énigme: <div style="display:inline-block;" id='idEnigme'><%= id %></div> 
         </p>
+
 
         <p id='explication'>
             <%= explication %>
         </p></br>
 
-        <img src="<%= cheminImage %>" id='image' style="max-width: 600px; width:100%"/> </br>
+        <img src="<%= cheminImage %>" id='image' style="max-width: 100px; width:100%"/> </br>
 
         <reponse id='reponseA' class="<%= reponses[0].value %>">
             <button id='boutonA'>
@@ -46,8 +47,10 @@
         <footer>
             <%- include('../partials/footer'); %>
         </footer>
-        
+
+        <script src="/socket.io/socket.io.js"></script>
         <%- include('../partials/client'); %>
+        
     </body>
 
 </html>

@@ -1,6 +1,7 @@
 <script>
 
     var tempsAttente = 1000;
+    var enAttente = false;
 
     //vues
     var idEnigme = document.getElementById('idEnigme');
@@ -19,6 +20,7 @@
 
     //initialisation
     addListeners();
+    enAttente = false;
 
     //fonctions
     function addListeners(){
@@ -94,6 +96,14 @@
 
     function repondre(event)
     {
+        if(enAttente) 
+        {
+            console.log("REPONSE: en attente");
+            return;
+        }
+
+        enAttente = true;
+
         var reponse = event.currentTarget.valeur;
         console.log("REPONSE: " + reponse);
         
@@ -102,9 +112,31 @@
         removeListeners();
 
         setTimeout(() => {
+
             prochaineEnigme();
+            enAttente = false;
+            
         }, tempsAttente);
     };
 
+    //socket.io    
+    const socket = io();
+
+    socket.on('capteur', function(capteur) {
+        console.log("[EVENT] capteur: " + capteur);
+
+        if(capteur == "A")
+        {
+            reponseA.click();
+        } else if(capteur == "B")
+        {
+            reponseB.click();
+        } else if(capteur == "C")
+        {
+            reponseC.click();
+        } else {
+            console.log("[EVENT] Erreur, capteur non reconnu");
+        }
+    });
 
 </script>
