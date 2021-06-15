@@ -1,0 +1,222 @@
+<script>
+
+    var tempsAttenteReponse = 1000;
+    var tempsAttenteProchaineEnigme = 1000;
+    var enAttente = false;
+
+    const CAPTEUR_VIDE = "NULL";
+    var capteurCourant = "";
+
+    var timerProchaineEnigme;
+    var timerRepondre;
+
+    //vues
+    var idEnigme = document.getElementById('idEnigme');
+    var categorie = document.getElementById('categorie');
+    var question = document.getElementById('question');
+    var explication = document.getElementById('explication');
+    var image = document.getElementById('image');
+
+    var reponseA = document.getElementById('reponseA');
+    var reponseB = document.getElementById('reponseB');
+    var reponseC = document.getElementById('reponseC');
+
+    var boutonA = document.getElementById('boutonA');
+    var boutonB = document.getElementById('boutonB');
+    var boutonC = document.getElementById('boutonC');
+
+    //initialisation
+    addListeners();
+    enAttente = false;
+    capteurCourant = CAPTEUR_VIDE;
+    explication.style.visibility = "hidden";
+
+    //fonctions
+    function addListeners(){
+        reponseA.addEventListener("click", repondre);
+        reponseA.valeur = "A";
+        reponseB.addEventListener("click", repondre);
+        reponseB.valeur = "B";
+        reponseC.addEventListener("click", repondre);
+        reponseC.valeur = "C";
+    };
+
+    function removeListeners(){
+        reponseA.removeEventListener("click", repondre);
+        reponseB.removeEventListener("click", repondre);
+        reponseC.removeEventListener("click", repondre);
+    };
+
+    function rafraichirVue(json)
+    {
+        console.log(json);
+
+        idEnigme.innerHTML = json.id;
+        categorie.innerHTML = json.categorie;
+        question.innerHTML = json.question;
+        explication.innerHTML = json.explication;
+
+        boutonA.innerHTML = json.reponses[0].name;
+        reponseA.className = json.reponses[0].value;
+        boutonB.innerHTML = json.reponses[1].name;
+        reponseB.className = json.reponses[1].value;
+        boutonC.innerHTML = json.reponses[2].name;
+        reponseC.className = json.reponses[2].value;
+
+        image.setAttribute("src", json.cheminImage);
+
+        addListeners();
+
+        rafraichirFeedback();
+    };
+
+    function feedback(){
+        if(reponseA.classList.contains("true")) {
+            boutonA.className = "true";
+        } else {
+            boutonA.className = "false";
+        }
+
+        if(reponseB.classList.contains("true")) {
+            boutonB.className = "true";
+        } else {
+            boutonB.className = "false";
+        }
+
+        if(reponseC.classList.contains("true")) {
+            boutonC.className = "true";
+        } else {
+            boutonC.className = "false";
+        }
+
+        explication.style.visibility = "visible";
+    };
+
+    function rafraichirFeedback()
+    {
+        boutonA.className = "default";
+        boutonB.className = "default";
+        boutonC.className = "default";
+        explication.style.visibility = "hidden";
+    }
+
+    function prochaineEnigme()
+    {
+        if(enAttente) 
+        {
+            console.log("PROCHAINE ENIGME: en attente");
+            return;
+        }
+
+        enAttente = true;
+
+        timerProchaineEnigme = setTimeout(() => {
+            fetch('/suivant', {
+                method: 'post',
+                headers: { 'Content-Type': 'application/json' },
+            })
+            .then(res => res.json())
+            .then(json => rafraichirVue(json))
+
+            enAttente = false;
+        }, tempsAttenteProchaineEnigme);
+    };
+
+
+    function repondre(event)
+    {
+        if(enAttente) 
+        {
+            console.log("REPONSE: en attente");
+            return;
+        }
+
+        enAttente = true;
+        
+        var reponse = event.currentTarget.valeur;
+        console.log("REPONSE: " + reponse);
+
+        if(reponse == "A") 
+        {
+            boutonA.className = "pressed";
+        } else if (reponse == "B") {
+            boutonB.className = "pressed";
+        } else if (reponse == "C") {
+            boutonC.className = "pressed";
+        }
+        
+        timerRepondre = setTimeout(() => {
+            feedback();
+            removeListeners();
+
+            enAttente = false;
+        }, tempsAttenteReponse);
+    };
+
+    //socket.io    
+    const socket = io();
+
+    socket.on('capteurON', function(capteur) {
+        console.log("[EVENT] capteurON: " + capteur);
+
+        if(capteurCourant == CAPTEUR_VIDE)
+        {
+            capteurCourant = capteur;
+            if(capteur == "A")
+            {
+                reponseA.click();
+            } else if(capteur == "B")
+            {
+                reponseB.click();
+            } else if(capteur == "C")
+            {
+                reponseC.click();
+            } else {
+                capteurCourant = CAPTEUR_VIDE;
+                console.log("[EVENT] Erreur, capteur non reconnu");
+            }
+            console.log("capteur courant: " + capteurCourant);
+        } else {
+            console.log("capteur pas vide: " + capteurCourant + " capteur : " + capteur);
+        }
+
+
+    });
+
+    socket.on('capteurOFF', function(capteur) {
+        console.log("[EVENT] capteurOFF: " + capteur);
+        console.log("capteur courant: " + capteurCourant);
+
+        if(capteurCourant != CAPTEUR_VIDE) {
+            if(capteur == capteurCourant) {
+                if(enAttente)
+                {
+                    clearTimeout(timerRepondre);
+                    feedback();
+                    removeListeners();
+                    enAttente = false;
+                }
+
+                prochaineEnigme();
+                capteurCourant = CAPTEUR_VIDE;
+                console.log("RESET: " + capteurCourant);
+            }
+        }
+
+        /*
+        if(capteur == "A")
+        {
+            prochaineEnigme();
+        } else if(capteur == "B")
+        {
+            prochaineEnigme();
+        } else if(capteur == "C")
+        {
+            prochaineEnigme();
+        } else {
+            console.log("[EVENT] Erreur, capteur non reconnu");
+        }
+        */
+    });
+
+</script>

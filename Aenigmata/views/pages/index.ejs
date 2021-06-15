@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <%- include('../partials/head'); %>
+    </head>
+    <body>
+        <div class="content">
+
+            <h1 id='question'>
+                <%= question %>
+            </h1>
+
+            <img src="<%= cheminImage %>" id='image'/>
+
+            <div id='explication'>
+                <%= explication %>
+            </div></br>
+
+            <div class="reponses">
+                <reponse id='reponseA' class="<%= reponses[0].value %>">
+                    <button id='boutonA' class="reponse">
+                        <%= reponses[0].name %>
+                    </button>
+                </reponse>
+        
+                <reponse id='reponseB' class="<%= reponses[1].value %>">
+                    <button id='boutonB' class="reponse">
+                        <%= reponses[1].name %>
+                    </button>
+                </reponse>
+        
+                <reponse id='reponseC' class="<%= reponses[2].value %>">         
+                    <button id='boutonC' class="reponse">
+                        <%= reponses[2].value %>
+                    </button>
+                </reponse></br>
+            </div>
+        </div>
+
+
+        <footer style="visibility:hidden;">            
+        <p>
+            <div style="display:inline-block;" id='categorie'><%= categorie %></div>
+            <div style="display:inline-block;" id='idEnigme'><%= id %></div>
+        </p>
+            <%- include('../partials/footer'); %>
+        </footer>
+
+        <script src="/socket.io/socket.io.js"></script>
+        <%- include('../partials/client'); %>
+        
+    </body>
+
+</html>
+

@@ -72,7 +72,7 @@ function initialisationGPIO()
         if(value == 1 && statusCapteurB == true) 
         { 
             statusCapteurB = false; 
-            eventManager.emit('capteurA', statusCapteurB);
+            eventManager.emit('capteurB', statusCapteurB);
         }
     });
 

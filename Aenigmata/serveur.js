@@ -21,9 +21,6 @@ app.use(express.static(path.join(__dirname, dossierEnigmes)));
 
 module_enigmes.initialiserDossier(dossierEnigmes);
 module_raspberry.initialisationGPIO();
-//module_enigmes.ajouterEnigme("militaire", "Est-ce une arme ?", ["oui", "non", "je sais pas"], 2, "ceci est l'explication", "cat1/qu1/image.jpg");
-//module_enigmes.ajouterEnigme("religion", "Est-ce une religion ?", ["oui", "non", "je sais pas"], 1, "ceci est l'explication", "cat1/qu2/image.jpg");
-
 
 //routes
 app.get('/', (req, res) => {
@@ -97,7 +94,9 @@ module_raspberry.eventManager.on(module_raspberry.eventCapteurA, function(valeur
 
     if(valeur)
     {
-        io.emit('capteur', 'A');
+        io.emit('capteurON', 'A');
+    } else {
+        io.emit('capteurOFF', 'A');
     }
 });
 module_raspberry.eventManager.on(module_raspberry.eventCapteurB, function(valeur) {
@@ -105,7 +104,9 @@ module_raspberry.eventManager.on(module_raspberry.eventCapteurB, function(valeur
 
     if(valeur)
     {
-        io.emit('capteur', 'B');
+        io.emit('capteurON', 'B');
+    } else {
+        io.emit('capteurOFF', 'B');
     }
 });
 module_raspberry.eventManager.on(module_raspberry.eventCapteurC, function(valeur) {
@@ -113,7 +114,9 @@ module_raspberry.eventManager.on(module_raspberry.eventCapteurC, function(valeur
 
     if(valeur)
     {
-        io.emit('capteur', 'C');
+        io.emit('capteurON', 'C');
+    } else {
+        io.emit('capteurOFF', 'C');
     }
 });
 
@@ -126,8 +129,7 @@ io.on('connection', (socket) => {
 server.listen(port, () => console.log(`Listening on port ${port}...`));
 
 process.on('SIGINT', _ => {
-    module_raspberry.unexportGPIO();   
-    
     console.log("----ARRET----");
+    module_raspberry.unexportGPIO();   
     process.exit(0); 
 });

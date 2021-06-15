@@ -1,0 +1,127 @@
+<meta charset="UTF-8">
+<title>Musée Gallo-Romain de Biesheim</title>
+
+<!-- CSS (load bootstrap from a CDN) -->
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">-->
+<style>
+    body 
+    { 
+        position: relative;
+        padding-bottom: 50px;
+        height: 100%;
+
+        background-color: #21222a;
+
+        font-size: large;
+        color: white;
+        text-align: center;
+    }
+
+    footer 
+    {
+        font-size: small;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 50px;
+    }
+
+    .content
+    {
+        position: relative;
+        padding-top: 10px;
+        max-width: 900px;
+        margin: auto;
+    }
+
+    #explication
+    {
+        height: 200px;
+        max-height: 200px;
+        display: block;
+        overflow: hidden;
+
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    reponse
+    {
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+
+    img
+    {
+        max-width: 400px; 
+        width:100%;
+    }
+    button 
+    {
+        display: inline-block;
+        padding: 0.65em 1.6em;
+        border: 3px solid #ffffff;
+        margin: 0 0.3em 0.3em 0;
+        border-radius: 0.12em;
+        box-sizing: border-box;
+        text-decoration: none;
+        font-weight: bold;
+        text-align: center;
+        transition: all 0.2s;
+        animation: reponseBouncy 5s infinite linear;
+        position: relative;
+        min-width: 150px;
+
+    }
+
+    button:hover 
+    {
+        background-color: white;
+        color: #000000;
+    }
+
+    button.default 
+    {
+        background-color: white;
+    }
+
+    button.pressed
+    {
+        background-color: #a4a5b8;
+    }
+
+    button.true 
+    {
+        background-color: rgb(33, 187, 33);
+    }
+
+    button.false 
+    {
+        background-color: rgb(255, 62, 62);
+    }
+
+    @keyframes reponseBouncy {
+        0% {
+            top: 0em;
+        }
+        40% {
+            top: 0em;
+        }
+        43% {
+            top: -0.9em;
+        }
+        46% {
+            top: 0em;
+        }
+        48% {
+            top: -0.4em;
+        }
+        50% {
+            top: 0em;
+        }
+        100% {
+            top: 0em;
+        }
+    }
+</style>
