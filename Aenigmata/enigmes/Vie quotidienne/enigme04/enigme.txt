@@ -1,0 +1,7 @@
+categorie: Vie quotidienne
+question: Cette céramique est exposée dans le musée. Quelles sont ses dimensions ?
+A: 5,7 cm de haut
+B: 157 cm de haut
+C: 57cm de haut
+juste: C
+explication: 

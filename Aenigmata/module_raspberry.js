@@ -6,19 +6,23 @@ const events = require('events');
 const pinCapteurA = 17;
 const pinCapteurB = 27;
 const pinCapteurC = 22;
+const pinCapteurLangue = 23;
 
 const capteurA = new gpio(pinCapteurA, 'in', 'both');
 const capteurB = new gpio(pinCapteurB, 'in', 'both');
 const capteurC = new gpio(pinCapteurC, 'in', 'both');
+const capteurLangue = new gpio(pinCapteurLangue, 'in', 'both');
 
 var statusCapteurA = false;
 var statusCapteurB = false;
 var statusCapteurC = false;
+var statusCapteurLangue = false;
 
 const eventManager = new events.EventEmitter();
 const eventCapteurA = "capteurA";
 const eventCapteurB = "capteurB";
 const eventCapteurC = "capteurC";
+const eventCapteurLangue = "capteurLangue";
 
 module.exports = 
 {
@@ -26,6 +30,7 @@ module.exports =
     eventCapteurA: eventCapteurA,
     eventCapteurB: eventCapteurB,
     eventCapteurC: eventCapteurC,
+    eventCapteurLangue: eventCapteurLangue,
     initialisationGPIO,
     unexportGPIO
 };
@@ -94,6 +99,25 @@ function initialisationGPIO()
             eventManager.emit('capteurC', statusCapteurC);
         }
     });
+    
+    capteurLangue.watch((err, value) => {
+        if(err){throw err;}
+
+        console.log("module_rapsberry: --capteurLangue: " + value);
+
+        //emettre uniquement si il y'a une variation de signal (de 0 à 1 ou inversement)
+        if(value == 0 && statusCapteurLangue == false) 
+        { 
+            statusCapteurLangue = true; 
+            eventManager.emit('capteurLangue', statusCapteurLangue);
+        } 
+
+        if(value == 1 && statusCapteurLangue == true) 
+        { 
+            statusCapteurLangue = false; 
+            eventManager.emit('capteurLangue', statusCapteurLangue);
+        }
+    });
 
     console.log("module_rapsberry: initialisé");
 };
@@ -104,6 +128,7 @@ function unexportGPIO()
     capteurA.unexport();
     capteurB.unexport();
     capteurC.unexport();
+    capteurLangue.unexport();
     
     console.log("module_rapsberry: unexportGPIO");
 };

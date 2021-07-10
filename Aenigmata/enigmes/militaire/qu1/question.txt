@@ -1,7 +1,0 @@
-categorie: Militaire
-question: Est-ce une arme ?
-A: oui
-B: non
-C: peut-être
-juste: B
-explication: Cette arme a été obtenue pendant la première guerre, peut-être qu'il y'a un lien avec la religion...

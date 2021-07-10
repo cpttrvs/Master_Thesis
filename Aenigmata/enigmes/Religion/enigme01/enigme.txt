@@ -1,0 +1,7 @@
+categorie: Religion
+question: Que porte Hercule sur son épaule ?
+A: manteau de laine
+B: peau de lion
+C: filet de pêche
+juste: B
+explication: Hercule est un demi-dieu romain fils de Jupiter, roi des dieux. Le lion de Némée est une créature fantastique tuée par le héros au cours de ses 12 travaux.Il doit en ramener la dépouille à Eurysthée. voir la vitrine Religion

@@ -4,13 +4,49 @@
         <%- include('../partials/head'); %>
     </head>
     <body>
+        <div class="side">
+            <div class="tutoriel">
+                <div id="tutorielFR">
+                    Répondez aux énigmes à l'aide de votre personnage.<br><br>
+                    - Placez votre personnage sur l'une des 3 plateformes devant vous.<br><br>
+                    - Enlevez votre personnage de la plateforme pour passer à la question suivante.<br> 
+                </div>
+                <div id="tutorielDE">
+                    Beantworte Sie die Fragen mit Ihrer Figur.<br><br>
+                    - Platziere deine Figur auf einer der 3 Plattformen vor dir.<br><br>
+                    - Entfernen Sie Ihre Figur von der Plattform, um mit der nächsten Frage fortzufahren.<br> 
+                </div>
+                <div id="tutorielEN">
+                    Answer the questions using your character.<br><br>
+                    - Place your character on one of the 3 platforms in front of you.<br><br>
+                    - Remove your character from the platform to move on to the next question.<br> 
+                </div>
+            </div>
+            <div class="langue">
+                <label for="fr">Français</label>
+                <input type="radio" id="fr" name="langue" value="FR">
+                <br>
+                <label for="de">Deutsch</label>
+                <input type="radio" id="de" name="langue" value="DE">
+                <br>
+                <label for="en">English</label>
+                <input type="radio" id="en" name="langue" value="EN">
+                <br>
+            </div>
+        </div>
+        
         <div class="content">
 
+            <div style="display:inline-block;" id='categorie'><%= categorie %></div>
+            <div style="display:inline-block;" id='idEnigme'><%= id %></div>
+            
             <h1 id='question'>
                 <%= question %>
             </h1>
 
             <img src="<%= cheminImage %>" id='image'/>
+            <video src="<%= cheminVideo %>" autoplay muted loop id='video'>
+            </video>
 
             <div id='explication'>
                 <%= explication %>
@@ -35,14 +71,10 @@
                     </button>
                 </reponse></br>
             </div>
+            <br><br>
         </div>
-
-
+        
         <footer style="visibility:hidden;">            
-        <p>
-            <div style="display:inline-block;" id='categorie'><%= categorie %></div>
-            <div style="display:inline-block;" id='idEnigme'><%= id %></div>
-        </p>
             <%- include('../partials/footer'); %>
         </footer>
 

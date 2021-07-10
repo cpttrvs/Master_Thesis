@@ -1,3 +1,3 @@
 #!/bin/bash
 
-killall node ; node ~/Aenigmata/serveur.js | firefox localhost:3000
+killall node ; node /home/pi/Aenigmata/serveur.js | firefox localhost:3000

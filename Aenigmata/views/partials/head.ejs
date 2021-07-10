@@ -6,9 +6,10 @@
 <style>
     body 
     { 
+        display: flex;
         position: relative;
-        padding-bottom: 50px;
         height: 100%;
+        overflow: hidden;
 
         background-color: #21222a;
 
@@ -24,15 +25,50 @@
         bottom: 0;
         left: 0;
         right: 0;
-        height: 50px;
+        height: 0px;
     }
 
     .content
     {
+        flex: 0 0 100%;
+        
         position: relative;
         padding-top: 10px;
-        max-width: 900px;
-        margin: auto;
+        max-width: 1000px;
+        
+        
+        border-left: 3px solid #ffffff;
+        border-radius: 0.12em;
+        box-sizing: border-box;
+    }
+    
+    .side
+    {
+        flex: 1;
+        
+        float: left;
+        max-width: 600px;
+        text-align: left;
+        margin-top: 300px;
+    }
+    
+    .tutoriel
+    {        
+        margin-top: 0px;
+        padding: 0.65em 1.6em;
+        box-sizing: border-box;
+    }
+    
+    .langue
+    {
+        width: 200px;
+        margin-top: 300px;
+        margin-left: 200px;
+        padding: 0.65em 1.6em;
+        border: 3px solid #ffffff;
+        border-radius: 0.12em;
+        box-sizing: border-box;
+        font-weight: bold;
     }
 
     #explication
@@ -42,8 +78,7 @@
         display: block;
         overflow: hidden;
 
-        padding-top: 20px;
-        padding-bottom: 20px;
+        padding: 20px;
     }
 
     reponse
@@ -54,9 +89,21 @@
 
     img
     {
-        max-width: 400px; 
-        width:100%;
+        max-height: 400px; 
+        height:100%;
     }
+    
+    video
+    {
+        max-height: 400px;
+        height:100%;
+    }
+    
+    input 
+    {
+        float: right;
+    }
+    
     button 
     {
         display: inline-block;

@@ -1,0 +1,7 @@
+categorie: Commerce
+question: Dans l'antiquité, l'agglomération de Biesheim-Oedenburg avait comme nom
+A: Argentoratum
+B: Argentovaria
+C: On ne sait pas
+juste: C
+explication: Une source écrite de Ptolémée (géographe grec 1ère moitié du IIe s.ap.J.-C.), indique qu’il y a chez les Rauraques deux villes, Argentovaria et Augusta Raurica. L’identification d’Argentovaria n'est pas encore résolue. La question reste ouverte jusqu’à ce qu’une inscription nous en apprenne davantage...

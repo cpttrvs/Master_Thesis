@@ -1,0 +1,7 @@
+categorie: Religion
+question: Cet enfant correspond à quelle divinité ?
+A: Bacchus
+B: Mercure
+C: Mars
+juste: A
+explication: .... ..., voir la vitrine religion

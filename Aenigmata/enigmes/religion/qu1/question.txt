@@ -1,7 +1,0 @@
-categorie: Religion
-question: Est-ce une religion ?
-A: oui
-B: non
-C: peut-être
-juste: A
-explication: Cette religion utilise les armes comme objet ritualistique...

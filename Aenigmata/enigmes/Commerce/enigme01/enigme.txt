@@ -1,0 +1,7 @@
+categorie: Commerce
+question: A l'époque gallo-romaine les denrées alimentaires étaient transportées en 
+A: amphore
+B: sac en nylon
+C: boite en carton
+juste: A
+explication: Grand contenant à deux anses en céramique, de forme ovoïde, généralement terminé par une pointe pour être fichée dans le sable. Elle servait au transport et au stockage des denrées alimentaires et des boissons (voir la vitrine commerce)

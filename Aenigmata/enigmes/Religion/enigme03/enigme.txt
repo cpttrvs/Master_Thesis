@@ -1,0 +1,7 @@
+categorie: religion
+question: Comment se nomment les compagnons du dieu Mithra ?
+A: myste
+B: disciple
+C: dadophore
+juste: C
+explication: Mithra est un dieu d'origine perse. Dans l'iconographie il est encadrée de deux porteurs de torches, nommés Cautès et Cautopatès.  (voir la vitrine Mithraeum)

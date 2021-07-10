@@ -1,0 +1,7 @@
+categorie: Vie quotidienne
+question: Quelle était l'utilité de cet objet ?
+A: embellir une tenue vestimentaire
+B: fixer un chignon
+C: épingler un drapé
+juste: B
+explication: A l’époque romaine les femmes portent les cheveux très longs qu’elles structurent en chignons élaborés. Ces coiffures sophistiquées nécessitent l’emploi d’une multitude d’épingles qui assurent le maintien des coiffures tout en contribuant à embellir l’apparence des femmes.Cette épingle à cheveux en os, représente un buste féminin (voir la vitrine parure).

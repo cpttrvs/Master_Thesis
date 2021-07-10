@@ -1,0 +1,7 @@
+categorie: Militaire
+question: Comment les soldats se servaient-ils de cette arme ?
+A: fixée au bout d'un pilum
+B: tirée avec un arc
+C: lancée à la main
+juste: C
+explication: La plumbata est une arme de jet utilisée par les soldats romains du Bas-Empire. Lancée à la main, il s'agit d'un projectile redoutable par sa taille et la forme de ses barbelures. Elle est caractérisée par un lest en plomb, destiné à augmenter la force de la pointe (voir la vitrine équipement militaire).

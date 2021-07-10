@@ -1,0 +1,7 @@
+categorie: commerce
+question: Les gallo-romains de Biesheim-Oedenburg consommaient-ils déjà du poivre ?
+A: oui
+B: non
+C: uniquement en sauce au poivre sur les steaks
+juste: A
+explication: La fouille des camps militaires a livré un grain de poivre, denrée très chère réservée à la table des officiers. Ce produit originaire d’Inde, a transité par l’Afrique pour arriver sur les bords du Rhin par voie navigable principalement. 

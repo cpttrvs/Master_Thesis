@@ -1,0 +1,8 @@
+categorie: Autre
+question: Comment a été prise cette photo aérienne ?
+A: avion
+B: parachute
+C: aérostat
+juste: A
+explication: La prospection aérienne consiste à p
+hotographier à moyenne altitude des zones dégagées et à détecter les indices de la présence d’un site archéologique. L’effet de recul procuré par l’altitude permet de voir des vestiges archéologiques enfouis, non visibles au sol.

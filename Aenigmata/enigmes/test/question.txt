@@ -1,7 +1,0 @@
-categorie: Test
-question: Ceci n'est pas un test ?
-A: si
-B: quand-même
-C: évidemment
-juste: A
-explication: Sacré test

@@ -1,7 +1,0 @@
-categorie: Militaire
-question: Est-ce une épée ?
-A: oui
-B: non
-C: peut-être
-juste: C
-explication: Cette épée a été obtenue pendant la seconde guerre, peut-être qu'il y'a un lien avec la religion...

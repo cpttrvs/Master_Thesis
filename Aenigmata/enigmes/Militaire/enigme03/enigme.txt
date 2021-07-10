@@ -1,0 +1,7 @@
+categorie: Militaire
+question: Comment appelle-t-on cette arme ?
+A: un pilum
+B: une flèche
+C: une lance
+juste: A
+explication: Le pilum est un modèle de javelot utilisé par les légions romaines. La force d'impact du pilum lui permettait de traverser une planche de bois de trois centimètres d’épaisseur ou une plaque métallique. Jules César, dans ses Commentaires sur la Guerre des Gaules, a décrit l'efficacité du pilum lors de la bataille contre les Helvètes. L’arme est lancée par des légionnaires placés sur une colline, contre des adversaires qui montent la pente en formation serrée. Les boucliers des attaquants sont transpercés, parfois cloués l'un à l'autre (voir vitrine équipement militaire)

@@ -1,0 +1,7 @@
+categorie: Autre
+question: La prospection géophysique fait appel à quelle propriété: terrestre ?
+A: magnétisme
+B: chaleur
+C: lumière
+juste: A
+explication: La prospection magnétique est fondée: sur la mesure des variations du champ magnétique terrestre produites par la présence de vestiges archéologiques. Parallèlement aux opérations archéologiques, un programme de prospections géophysiques a été mené sur le site de Biesheim-Oedenburg. Il constitue un excellent outil d’analyse spatiale du site.

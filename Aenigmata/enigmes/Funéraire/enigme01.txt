@@ -1,0 +1,7 @@
+categorie: funéraire
+question: Dans quel matériau a été taillé ce sarcophage ?
+A: calcaire
+B: grès
+C: marbre
+juste: B
+explication:  Quatre sarcophages en grès, destinés à des personnages privilégiés ont été exhumés dans la nécropole gallo-romaine. Taillés au burin, ils se composent d’une cuve monolithique et d’un couvercle en bâtière. Toutes les faces sont gravées d’une riche décoration géométrique. Les angles internes de la cuve présentent 4 colonnettes engagées, qui devaient supporter un couvercle intérieur en bois.

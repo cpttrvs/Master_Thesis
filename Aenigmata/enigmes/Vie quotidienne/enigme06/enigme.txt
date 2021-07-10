@@ -1,0 +1,7 @@
+categorie: Vie quotidienne
+question: Avec quel instrument les gallo-romains écrivaient-ils sur les tablettes en cire ?
+A: un stylo
+B: le doigt
+C: un stylet
+juste: C
+explication: (voir la vitrine vie quotidienne).

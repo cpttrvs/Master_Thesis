@@ -1,0 +1,7 @@
+categorie: Vie quotidienne
+question: Pour qui cet objet était-il utile ?
+A: pour la cuisinière qui s'en servait de saucière
+B: pour le bébé qui s'en servait de biberon
+C: pour le musicien qui s'en servait d'instrument de musique
+juste: B
+explication: A l’époque romaine les femmes portent les cheveux très longs qu’elles structurent en chignons élaborés. Ces coiffures sophistiquées nécessitent l’emploi d’une multitude d’épingles qui assurent le maintien des coiffures tout en contribuant à embellir l’apparence des femmes.Cette épingle à cheveux en os, représente un buste féminin (voir la vitrine vaisselle).

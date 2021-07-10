@@ -1,0 +1,7 @@
+categorie: Militaire
+question: De quelle arme défensive provient cet élément ?
+A: casque
+B: cuirasse
+C: jambière
+juste: A
+explication: La paragnathide est un élément servant à protéger les joues sur les casques antiques. Ce sont généralement des pièces mobiles, afin de ne pas bloquer les mouvements de tête de la personne portant le casque. Plusieurs paragnathides, en bronze et en fer, ont été découvertes en dépôt votif dans le sanctuaire des temples(voir la vitrine équipement militaire).

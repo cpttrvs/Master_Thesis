@@ -17,7 +17,7 @@ const dossierEnigmes = 'enigmes';
 //initialisation
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false}));
-app.use(express.static(path.join(__dirname, dossierEnigmes)));
+app.use(express.static(path.join(__dirname, "./" + dossierEnigmes)));
 
 module_enigmes.initialiserDossier(dossierEnigmes);
 module_raspberry.initialisationGPIO();
@@ -26,22 +26,42 @@ module_raspberry.initialisationGPIO();
 app.get('/', (req, res) => {
     console.log("----ROUTING: home----");
 
-    let enigme = module_enigmes.recevoirPremiereEnigme();
+    let enigme = module_enigmes.recevoirDerniereEnigme();
 
     if(!enigme) {
         res.status(404).send('Il n\'y a aucune enigme');
     }
+    
+    let nombreEnigmes = module_enigmes.recevoirNombreTotal();
+    let fichiersErreur = module_enigmes.fichiersErreur;
+    console.log(fichiersErreur);
 
     res.render('pages/index', {
         id: enigme.id,
+        total: nombreEnigmes,
+        cheminImage: enigme.cheminImage,
+        cheminVideo: enigme.cheminVideo,
+        
         categorie: enigme.categorie,
+        categorieDE: enigme.categorieDE,
+        categorieEN: enigme.categorieEN,
+        
         question: enigme.question,
+        questionDE: enigme.questionDE,
+        questionEN: enigme.questionEN,
+        
         explication: enigme.explication,
+        explicationDE: enigme.explicationDE,
+        explicationEN: enigme.explicationEN,
+        
         reponses: enigme.reponses,
-        cheminImage: enigme.cheminImage
+        reponsesDE: enigme.reponsesDE,
+        reponsesEN: enigme.reponsesEN,
+        
+        fichiersErreur: fichiersErreur,
     });
 
-    //console.log(enigme);
+    console.log(enigme);
 });
 
 app.get('/:id', (req, res) => {
@@ -56,14 +76,34 @@ app.get('/:id', (req, res) => {
     if(!enigme) {
         res.status(404).send('L\'enigme ' + req.params.id + ' n\'existe pas');
     }
+    
+    let nombreEnigmes = module_enigmes.recevoirNombreTotal();
+    let fichiersErreur = module_enigmes.fichiersErreur;
+    console.log(fichiersErreur);
 
     res.render('pages/index', {
         id: enigme.id,
+        total: nombreEnigmes,
+        cheminImage: enigme.cheminImage,
+        cheminVideo: enigme.cheminVideo,
+        
         categorie: enigme.categorie,
+        categorieDE: enigme.categorieDE,
+        categorieEN: enigme.categorieEN,
+        
         question: enigme.question,
+        questionDE: enigme.questionDE,
+        questionEN: enigme.questionEN,
+        
         explication: enigme.explication,
+        explicationDE: enigme.explicationDE,
+        explicationEN: enigme.explicationEN,
+        
         reponses: enigme.reponses,
-        cheminImage: enigme.cheminImage
+        reponsesDE: enigme.reponsesDE,
+        reponsesEN: enigme.reponsesEN,
+        
+        fichiersErreur : fichiersErreur,
     });
     
     console.log(enigme);
@@ -77,14 +117,34 @@ app.post('/suivant', (req, res) => {
     if(!enigme) {
         res.status(404).send('L\'enigme ' + req.params.id + ' n\'existe pas');
     }
+    
+    let nombreEnigmes = module_enigmes.recevoirNombreTotal();
+    let fichiersErreur = module_enigmes.fichiersErreur;
+    console.log(fichiersErreur);
 
     res.send({
         id: enigme.id,
+        total: nombreEnigmes,
+        cheminImage: enigme.cheminImage,
+        cheminVideo: enigme.cheminVideo,
+        
         categorie: enigme.categorie,
+        categorieDE: enigme.categorieDE,
+        categorieEN: enigme.categorieEN,
+        
         question: enigme.question,
+        questionDE: enigme.questionDE,
+        questionEN: enigme.questionEN,
+        
         explication: enigme.explication,
+        explicationDE: enigme.explicationDE,
+        explicationEN: enigme.explicationEN,
+        
         reponses: enigme.reponses,
-        cheminImage: enigme.cheminImage
+        reponsesDE: enigme.reponsesDE,
+        reponsesEN: enigme.reponsesEN,
+        
+        fichiersErreur : fichiersErreur,
     });
 });
 
@@ -117,6 +177,16 @@ module_raspberry.eventManager.on(module_raspberry.eventCapteurC, function(valeur
         io.emit('capteurON', 'C');
     } else {
         io.emit('capteurOFF', 'C');
+    }
+});
+module_raspberry.eventManager.on(module_raspberry.eventCapteurLangue, function(valeur) {
+    console.log("[EVENT] " + module_raspberry.eventCapteurLangue + " = " + valeur);
+
+    if(valeur)
+    {
+        io.emit('capteurON', 'Langue');
+    } else {
+        io.emit('capteurOFF', 'Langue');
     }
 });
 
